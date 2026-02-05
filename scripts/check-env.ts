@@ -123,6 +123,11 @@ function validateAuthentication(env: NodeJS.ProcessEnv): ValidationError[] {
     errors.push({ feature: "authentication.vercel", missing });
   }
 
+  const anyProviderEnabled =
+    config.authentication.google ||
+    config.authentication.github ||
+    config.authentication.vercel;
+
   const hasAuth =
     (config.authentication.google &&
       env.AUTH_GOOGLE_ID &&
@@ -134,7 +139,7 @@ function validateAuthentication(env: NodeJS.ProcessEnv): ValidationError[] {
       env.VERCEL_APP_CLIENT_ID &&
       env.VERCEL_APP_CLIENT_SECRET);
 
-  if (!hasAuth) {
+  if (anyProviderEnabled && !hasAuth) {
     errors.push({
       feature: "authentication",
       missing: ["At least one auth provider must be enabled and configured"],
