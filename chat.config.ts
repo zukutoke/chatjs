@@ -2,6 +2,8 @@ import type { ConfigInput } from "@/lib/config-schema";
 
 const isProd = process.env.NODE_ENV === "production";
 
+const env = process.env;
+
 /**
  * ChatJS Configuration
  *
@@ -47,11 +49,11 @@ const config: ConfigInput = {
   },
   integrations: {
     sandbox: true, // Vercel-native, no key needed
-    webSearch: true, // Requires TAVILY_API_KEY or FIRECRAWL_API_KEY
-    urlRetrieval: true, // Requires FIRECRAWL_API_KEY
-    mcp: true, // Requires MCP_ENCRYPTION_KEY
-    imageGeneration: true, // Requires BLOB_READ_WRITE_TOKEN
-    attachments: true, // Requires BLOB_READ_WRITE_TOKEN
+    webSearch: !!(env.TAVILY_API_KEY || env.FIRECRAWL_API_KEY),
+    urlRetrieval: !!env.FIRECRAWL_API_KEY,
+    mcp: !!env.MCP_ENCRYPTION_KEY,
+    imageGeneration: !!env.BLOB_READ_WRITE_TOKEN,
+    attachments: !!env.BLOB_READ_WRITE_TOKEN,
   },
   legal: {
     minimumAge: 13,
@@ -69,9 +71,9 @@ const config: ConfigInput = {
     },
   },
   authentication: {
-    google: true, // Requires AUTH_GOOGLE_ID + AUTH_GOOGLE_SECRET
-    github: true, // Requires AUTH_GITHUB_ID + AUTH_GITHUB_SECRET
-    vercel: true, // Requires VERCEL_APP_CLIENT_ID + VERCEL_APP_CLIENT_SECRET
+    google: !!(env.AUTH_GOOGLE_ID && env.AUTH_GOOGLE_SECRET),
+    github: !!(env.AUTH_GITHUB_ID && env.AUTH_GITHUB_SECRET),
+    vercel: !!(env.VERCEL_APP_CLIENT_ID && env.VERCEL_APP_CLIENT_SECRET),
   },
   models: {
     providerOrder: ["openai", "google", "anthropic", "xai"],
