@@ -1,0 +1,543 @@
+{
+  "meta": {
+    "title": "MacBook Neo",
+    "description": "Продуктовая страница MacBook Neo — самый доступный ноутбук Apple с A18 Pro, 13\" Liquid Retina дисплеем и Apple Intelligence",
+    "purpose": "product_landing",
+    "target_audience": "Студенты и повседневные пользователи, ищущие доступный и стильный Mac",
+    "brand_voice": "premium",
+    "locale": "en-US"
+  },
+
+  "design_tokens": {
+    "color_scheme": {
+      "mode": "mixed",
+      "primary": "#0071e3",
+      "secondary": "#1d1d1f",
+      "background": "#000000",
+      "surface": "#161617",
+      "text_primary": "#f5f5f7",
+      "text_secondary": "#86868b",
+      "accent": "#2997ff"
+    },
+    "typography": {
+      "font_family_heading": "SF Pro Display",
+      "font_family_body": "SF Pro Text",
+      "scale": "editorial"
+    },
+    "spacing": "ultra_spacious",
+    "border_radius": "large",
+    "max_width": "980px"
+  },
+
+  "navigation": {
+    "type": "fixed_top",
+    "style": "blur",
+    "items": [
+      { "label": "Overview", "anchor": "#hero", "type": "link" },
+      { "label": "Design", "anchor": "#design", "type": "link" },
+      { "label": "Apple Intelligence", "anchor": "#apple-intelligence", "type": "link" },
+      { "label": "macOS", "anchor": "#macos", "type": "link" },
+      { "label": "Specs", "anchor": "#specs", "type": "link" }
+    ],
+    "cta": {
+      "label": "Buy",
+      "style": "primary"
+    }
+  },
+
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "layout": {
+        "structure": "centered",
+        "content_alignment": "center",
+        "height": "viewport",
+        "padding": "large"
+      },
+      "appearance": {
+        "background": { "type": "color", "value": "#000000" },
+        "theme_override": "dark"
+      },
+      "content": {
+        "eyebrow": "Introducing",
+        "heading": {
+          "text": "MacBook Neo",
+          "level": "h1",
+          "size": "jumbo"
+        },
+        "subheading": "Welcome to the family.",
+        "body": "An amazing Mac at a surprising price. With a durable design, beautiful colors, and powerful features, it's a magical new way to fall head over heels with Mac, every day.",
+        "media": [
+          {
+            "type": "image",
+            "role": "hero_image",
+            "placement": "below_content",
+            "sizing": "full_bleed",
+            "alt_description": "MacBook Neo ноутбук в четырёх цветах — Silver, Blush, Citrus, Indigo — расположены веером на тёмном фоне",
+            "aspect_ratio": "16:9"
+          }
+        ],
+        "cta": [
+          { "label": "Watch the film", "style": "text_link", "action": "play_video", "icon": "play" },
+          { "label": "Watch the event", "style": "text_link", "action": "play_video", "icon": "play" }
+        ]
+      },
+      "animation": {
+        "entrance": "fade_in",
+        "trigger": "on_load",
+        "duration": "slow"
+      }
+    },
+
+    {
+      "id": "colors",
+      "type": "color_picker",
+      "layout": {
+        "structure": "centered",
+        "content_alignment": "center",
+        "height": "viewport",
+        "padding": "xlarge"
+      },
+      "appearance": {
+        "background": { "type": "color", "value": "#000000" },
+        "theme_override": "dark"
+      },
+      "content": {
+        "eyebrow": "Colors",
+        "heading": {
+          "text": "The most colorful MacBook lineup ever.",
+          "level": "h2",
+          "size": "display"
+        },
+        "subheading": "Four stunning colors. One durable design.",
+        "media": [
+          {
+            "type": "image",
+            "role": "product_shot",
+            "placement": "below_content",
+            "sizing": "contain",
+            "alt_description": "MacBook Neo крупным планом в выбранном цвете, вид сверху под углом",
+            "aspect_ratio": "16:9"
+          }
+        ],
+        "interactive": {
+          "type": "color_selector",
+          "options": [
+            { "label": "Silver", "value": "#e3e4e5" },
+            { "label": "Blush", "value": "#f4c2c2" },
+            { "label": "Citrus", "value": "#f5d76e" },
+            { "label": "Indigo", "value": "#4b5dbd" }
+          ]
+        }
+      },
+      "animation": {
+        "entrance": "fade_up",
+        "trigger": "on_scroll",
+        "scroll_behavior": "pin_and_reveal"
+      }
+    },
+
+    {
+      "id": "design",
+      "type": "feature_showcase",
+      "layout": {
+        "structure": "centered",
+        "content_alignment": "center",
+        "height": "auto",
+        "padding": "xlarge"
+      },
+      "appearance": {
+        "background": { "type": "color", "value": "#161617" },
+        "theme_override": "dark",
+        "separator": "gradient_fade"
+      },
+      "content": {
+        "eyebrow": "Design",
+        "heading": {
+          "text": "Durable design. Made to last.",
+          "level": "h2",
+          "size": "display"
+        },
+        "body": "MacBook Neo is made with a durable recycled aluminum enclosure that helps it reach 60 percent recycled content by weight, the most ever in any Apple product.",
+        "media": [
+          {
+            "type": "image",
+            "role": "product_shot",
+            "placement": "below_content",
+            "sizing": "full_bleed",
+            "alt_description": "Крупный план корпуса MacBook Neo из переработанного алюминия, видны текстура и грани",
+            "aspect_ratio": "21:9"
+          }
+        ],
+        "badges": [
+          { "text": "60% recycled content", "variant": "success" }
+        ]
+      },
+      "animation": {
+        "entrance": "fade_up",
+        "trigger": "on_scroll",
+        "duration": "normal"
+      }
+    },
+
+    {
+      "id": "display",
+      "type": "feature_showcase",
+      "layout": {
+        "structure": "centered",
+        "content_alignment": "center",
+        "height": "auto",
+        "padding": "xlarge"
+      },
+      "appearance": {
+        "background": { "type": "color", "value": "#000000" },
+        "theme_override": "dark"
+      },
+      "content": {
+        "eyebrow": "Display",
+        "heading": {
+          "text": "See it all in stunning clarity.",
+          "level": "h2",
+          "size": "display"
+        },
+        "body": "With outstanding resolution and 500 nits of brightness, the 13-inch Liquid Retina display brings photos, websites, and videos to life with refreshing clarity and vivid colors.",
+        "media": [
+          {
+            "type": "image",
+            "role": "product_shot",
+            "placement": "below_content",
+            "sizing": "contain",
+            "alt_description": "Экран MacBook Neo отображает яркое цветное изображение, демонстрируя качество Liquid Retina дисплея",
+            "aspect_ratio": "16:9"
+          }
+        ],
+        "specs": [
+          { "label": "Display", "value": "13\" Liquid Retina" },
+          { "label": "Resolution", "value": "2408 × 1506" },
+          { "label": "Brightness", "value": "500 nits" }
+        ]
+      },
+      "animation": {
+        "entrance": "fade_up",
+        "trigger": "on_scroll",
+        "scroll_behavior": "parallax"
+      }
+    },
+
+    {
+      "id": "keyboard",
+      "type": "feature_showcase",
+      "layout": {
+        "structure": "split_50_50",
+        "content_alignment": "left",
+        "height": "auto",
+        "padding": "xlarge"
+      },
+      "appearance": {
+        "background": { "type": "color", "value": "#161617" },
+        "theme_override": "dark"
+      },
+      "content": {
+        "eyebrow": "Keyboard and Trackpad",
+        "heading": {
+          "text": "Typing made magical.",
+          "level": "h2",
+          "size": "large"
+        },
+        "body": "The Magic Keyboard delivers a precise and comfortable typing experience. And the large Multi-Touch trackpad lets you tap, pinch, swipe, and click anywhere.",
+        "media": [
+          {
+            "type": "image",
+            "role": "product_shot",
+            "placement": "right",
+            "sizing": "contain",
+            "alt_description": "Крупный план клавиатуры и трекпада MacBook Neo, видны клавиши и большой Multi-Touch трекпад",
+            "aspect_ratio": "4:3"
+          }
+        ]
+      },
+      "animation": {
+        "entrance": "slide_right",
+        "trigger": "on_scroll"
+      }
+    },
+
+    {
+      "id": "touch-id",
+      "type": "feature_showcase",
+      "layout": {
+        "structure": "split_50_50",
+        "content_alignment": "right",
+        "height": "auto",
+        "padding": "large"
+      },
+      "appearance": {
+        "background": { "type": "color", "value": "#000000" },
+        "theme_override": "dark"
+      },
+      "content": {
+        "eyebrow": "Touch ID",
+        "heading": {
+          "text": "Your fingerprint is your password.",
+          "level": "h2",
+          "size": "large"
+        },
+        "body": "Touch ID lets you easily unlock your MacBook Neo, sign in to websites and apps, and download apps with the touch of your finger.",
+        "media": [
+          {
+            "type": "image",
+            "role": "product_shot",
+            "placement": "left",
+            "sizing": "contain",
+            "alt_description": "Палец касается сенсора Touch ID в верхнем правом углу клавиатуры MacBook Neo",
+            "aspect_ratio": "1:1"
+          }
+        ]
+      },
+      "animation": {
+        "entrance": "slide_left",
+        "trigger": "on_scroll"
+      }
+    },
+
+    {
+      "id": "camera-audio",
+      "type": "feature_showcase",
+      "layout": {
+        "structure": "grid_2col",
+        "content_alignment": "center",
+        "height": "auto",
+        "padding": "xlarge"
+      },
+      "appearance": {
+        "background": { "type": "color", "value": "#161617" },
+        "theme_override": "dark"
+      },
+      "content": {
+        "heading": {
+          "text": "Look sharp. Sound great.",
+          "level": "h2",
+          "size": "display"
+        },
+        "bullets": [
+          {
+            "icon": "camera",
+            "title": "1080p FaceTime HD Camera",
+            "text": "The 1080p FaceTime HD camera makes video calls look crystal clear."
+          },
+          {
+            "icon": "speaker",
+            "title": "Speakers & Mics",
+            "text": "Two side-firing speakers deliver immersive sound, and dual microphones isolate and enhance your voice for crystal clarity."
+          }
+        ],
+        "media": [
+          {
+            "type": "image",
+            "role": "lifestyle",
+            "placement": "above_content",
+            "sizing": "full_bleed",
+            "alt_description": "Человек на видеозвонке через MacBook Neo, виден фронтальный ракурс ноутбука",
+            "aspect_ratio": "16:9"
+          }
+        ]
+      },
+      "animation": {
+        "entrance": "fade_up",
+        "trigger": "on_scroll",
+        "stagger": true
+      }
+    },
+
+    {
+      "id": "apple-intelligence",
+      "type": "feature_showcase",
+      "layout": {
+        "structure": "centered",
+        "content_alignment": "center",
+        "height": "viewport",
+        "padding": "xlarge"
+      },
+      "appearance": {
+        "background": {
+          "type": "gradient",
+          "value": "linear-gradient(180deg, #000000 0%, #1a1a2e 50%, #000000 100%)"
+        },
+        "theme_override": "dark"
+      },
+      "content": {
+        "eyebrow": "Apple Intelligence",
+        "heading": {
+          "text": "AI that actually helps.",
+          "level": "h2",
+          "size": "jumbo",
+          "highlight": "AI"
+        },
+        "body": "Apple Intelligence is the personal intelligence system that helps you write, express yourself, and get things done effortlessly. With privacy built in through on-device processing and Private Cloud Compute running on Apple silicon.",
+        "media": [
+          {
+            "type": "image",
+            "role": "diagram",
+            "placement": "below_content",
+            "sizing": "contain",
+            "alt_description": "Визуализация Apple Intelligence — абстрактные светящиеся линии и точки, символизирующие нейронные сети на тёмном фоне",
+            "aspect_ratio": "16:9"
+          }
+        ],
+        "bullets": [
+          { "icon": "pen", "title": "Writing Tools", "text": "Rewrite, proofread, and summarize text across apps" },
+          { "icon": "wand", "title": "Image Playground", "text": "Create fun images in seconds" },
+          { "icon": "shield", "title": "Private by Design", "text": "On-device processing with Private Cloud Compute" }
+        ],
+        "cta": [
+          { "label": "Learn more about Apple Intelligence", "style": "text_link", "action": "external_link" }
+        ]
+      },
+      "animation": {
+        "entrance": "blur_in",
+        "trigger": "on_scroll",
+        "scroll_behavior": "progress_driven",
+        "duration": "slow"
+      }
+    },
+
+    {
+      "id": "macos",
+      "type": "feature_showcase",
+      "layout": {
+        "structure": "centered",
+        "content_alignment": "center",
+        "height": "auto",
+        "padding": "xlarge"
+      },
+      "appearance": {
+        "background": { "type": "color", "value": "#000000" },
+        "theme_override": "dark"
+      },
+      "content": {
+        "eyebrow": "macOS",
+        "heading": {
+          "text": "Liquid Glass brings clarity to everything you do.",
+          "level": "h2",
+          "size": "display"
+        },
+        "body": "macOS feels simple and intuitive — quickly access your apps and files, neatly tile multiple windows, and efficiently navigate with the Multi-Touch trackpad.",
+        "media": [
+          {
+            "type": "image",
+            "role": "screenshot",
+            "placement": "below_content",
+            "sizing": "contain",
+            "alt_description": "Скриншот macOS с дизайном Liquid Glass — полупрозрачные окна приложений на рабочем столе MacBook Neo",
+            "aspect_ratio": "16:9"
+          }
+        ],
+        "bullets": [
+          { "icon": "grid", "title": "Window Tiling", "text": "Organize multiple windows efficiently" },
+          { "icon": "apps", "title": "App Compatibility", "text": "From Microsoft 365 Copilot to Zoom — the apps you love run wonderfully on Mac" },
+          { "icon": "palette", "title": "Personalization", "text": "Light or dark mode, color-tinted icons, resizable Dock and toolbars" }
+        ]
+      },
+      "animation": {
+        "entrance": "fade_up",
+        "trigger": "on_scroll"
+      }
+    },
+
+    {
+      "id": "specs-summary",
+      "type": "specs_grid",
+      "layout": {
+        "structure": "grid_3col",
+        "content_alignment": "center",
+        "height": "auto",
+        "padding": "xlarge"
+      },
+      "appearance": {
+        "background": { "type": "color", "value": "#161617" },
+        "theme_override": "dark"
+      },
+      "content": {
+        "heading": {
+          "text": "Get the highlights.",
+          "level": "h2",
+          "size": "display"
+        },
+        "specs": [
+          { "label": "Chip", "value": "A18 Pro", "icon": "cpu", "footnote": "6-core CPU, 5-core GPU, 16-core Neural Engine" },
+          { "label": "Memory", "value": "8GB", "icon": "memory" },
+          { "label": "Storage", "value": "256GB / 512GB", "icon": "storage" },
+          { "label": "Display", "value": "13\" Liquid Retina", "icon": "display" },
+          { "label": "Battery", "value": "Up to 16 hrs", "icon": "battery" },
+          { "label": "Ports", "value": "2× USB-C + 3.5mm", "icon": "port" },
+          { "label": "Wi-Fi", "value": "Wi-Fi 6E", "icon": "wifi" },
+          { "label": "Bluetooth", "value": "6.0", "icon": "bluetooth" },
+          { "label": "Weight", "value": "Starting at $599", "icon": "dollar" }
+        ]
+      },
+      "animation": {
+        "entrance": "fade_up",
+        "trigger": "on_scroll",
+        "stagger": true
+      },
+      "responsive": {
+        "mobile_layout": "stack"
+      }
+    },
+
+    {
+      "id": "cta-buy",
+      "type": "cta_banner",
+      "layout": {
+        "structure": "centered",
+        "content_alignment": "center",
+        "height": "half_viewport",
+        "padding": "xlarge"
+      },
+      "appearance": {
+        "background": { "type": "color", "value": "#000000" },
+        "theme_override": "dark"
+      },
+      "content": {
+        "heading": {
+          "text": "MacBook Neo",
+          "level": "h2",
+          "size": "jumbo"
+        },
+        "subheading": "Starting at $599",
+        "cta": [
+          { "label": "Buy", "style": "primary", "action": "navigate" },
+          { "label": "Learn more", "style": "text_link", "action": "navigate" }
+        ]
+      },
+      "animation": {
+        "entrance": "fade_in",
+        "trigger": "on_scroll"
+      }
+    }
+  ],
+
+  "footer": {
+    "style": "expanded",
+    "columns": [
+      {
+        "heading": "Shop and Learn",
+        "links": ["Store", "Mac", "iPad", "iPhone", "Watch", "Vision", "AirPods", "Accessories"]
+      },
+      {
+        "heading": "Services",
+        "links": ["Apple Music", "Apple TV+", "Apple Arcade", "iCloud", "Apple Books", "Apple Podcasts"]
+      },
+      {
+        "heading": "Apple Store",
+        "links": ["Find a Store", "Genius Bar", "Today at Apple", "Financing", "Trade In", "Order Status"]
+      },
+      {
+        "heading": "For Education",
+        "links": ["Apple and Education", "Shop for K-12", "Shop for College"]
+      }
+    ],
+    "legal_links": ["Privacy Policy", "Terms of Use", "Sales and Refunds", "Legal", "Site Map"]
+  }
+}

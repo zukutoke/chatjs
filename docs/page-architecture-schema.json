@@ -1,0 +1,493 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "page-architecture-v1",
+  "title": "Page Architecture Schema",
+  "description": "Универсальная JSON-схема описания архитектуры лендинга/продуктовой страницы. Используется как формат вывода для AI-агента маркетолога-дизайнера, который анализирует дизайн страницы и переводит его в структурированное описание.",
+  "type": "object",
+  "required": ["meta", "design_tokens", "sections"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Метаинформация о странице",
+      "required": ["title", "description", "purpose", "target_audience"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Название страницы / продукта",
+          "examples": ["MacBook Neo"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Краткое описание страницы для SEO и контекста",
+          "examples": ["Продуктовая страница MacBook Neo — доступный ноутбук Apple"]
+        },
+        "purpose": {
+          "type": "string",
+          "enum": ["product_landing", "saas_landing", "portfolio", "blog", "ecommerce", "corporate", "event", "app_download"],
+          "description": "Тип/цель страницы"
+        },
+        "target_audience": {
+          "type": "string",
+          "description": "Целевая аудитория",
+          "examples": ["Студенты и повседневные пользователи, ищущие доступный Mac"]
+        },
+        "brand_voice": {
+          "type": "string",
+          "enum": ["premium", "playful", "professional", "minimalist", "bold", "warm", "technical"],
+          "description": "Тон бренда / стилистика коммуникации"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Язык/регион",
+          "examples": ["en-US", "ru-RU"]
+        }
+      }
+    },
+
+    "design_tokens": {
+      "type": "object",
+      "description": "Глобальные дизайн-токены страницы",
+      "properties": {
+        "color_scheme": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": ["light", "dark", "mixed"],
+              "description": "Основной режим страницы"
+            },
+            "primary": { "type": "string", "description": "HEX основного цвета", "examples": ["#0071e3"] },
+            "secondary": { "type": "string", "examples": ["#1d1d1f"] },
+            "background": { "type": "string", "examples": ["#000000"] },
+            "surface": { "type": "string", "description": "Цвет карточек/поверхностей", "examples": ["#161617"] },
+            "text_primary": { "type": "string", "examples": ["#f5f5f7"] },
+            "text_secondary": { "type": "string", "examples": ["#86868b"] },
+            "accent": { "type": "string", "examples": ["#2997ff"] }
+          }
+        },
+        "typography": {
+          "type": "object",
+          "properties": {
+            "font_family_heading": { "type": "string", "examples": ["SF Pro Display"] },
+            "font_family_body": { "type": "string", "examples": ["SF Pro Text"] },
+            "scale": {
+              "type": "string",
+              "enum": ["compact", "default", "large", "editorial"],
+              "description": "Масштаб типографики: editorial = крупные заголовки как у Apple"
+            }
+          }
+        },
+        "spacing": {
+          "type": "string",
+          "enum": ["dense", "normal", "spacious", "ultra_spacious"],
+          "description": "Общий ритм отступов между секциями"
+        },
+        "border_radius": {
+          "type": "string",
+          "enum": ["none", "small", "medium", "large", "pill"],
+          "description": "Стиль скругления углов"
+        },
+        "max_width": {
+          "type": "string",
+          "description": "Максимальная ширина контента",
+          "examples": ["980px", "1200px", "1440px", "full"]
+        }
+      }
+    },
+
+    "navigation": {
+      "type": "object",
+      "description": "Навигация страницы",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["fixed_top", "sticky", "hidden", "sidebar", "floating"],
+          "description": "Тип поведения навигации"
+        },
+        "style": {
+          "type": "string",
+          "enum": ["transparent", "solid", "blur", "minimal"],
+          "description": "Визуальный стиль"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "anchor": { "type": "string", "description": "Якорь к секции (#section-id)" },
+              "type": { "type": "string", "enum": ["link", "dropdown", "cta_button"] }
+            }
+          }
+        },
+        "cta": {
+          "type": "object",
+          "description": "CTA кнопка в навигации",
+          "properties": {
+            "label": { "type": "string", "examples": ["Buy", "Купить"] },
+            "style": { "type": "string", "enum": ["primary", "secondary", "text"] }
+          }
+        }
+      }
+    },
+
+    "sections": {
+      "type": "array",
+      "description": "Упорядоченный список секций страницы сверху вниз",
+      "items": {
+        "$ref": "#/$defs/section"
+      }
+    },
+
+    "footer": {
+      "type": "object",
+      "description": "Подвал страницы",
+      "properties": {
+        "style": { "type": "string", "enum": ["minimal", "standard", "expanded"] },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "heading": { "type": "string" },
+              "links": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        },
+        "legal_links": {
+          "type": "array",
+          "items": { "type": "string" },
+          "examples": [["Privacy Policy", "Terms of Use", "Sales Refund"]]
+        }
+      }
+    }
+  },
+
+  "$defs": {
+    "section": {
+      "type": "object",
+      "required": ["id", "type", "content"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Уникальный идентификатор секции",
+          "examples": ["hero", "colors", "display", "chip", "apple-intelligence"]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "hero",
+            "feature_showcase",
+            "specs_grid",
+            "comparison",
+            "color_picker",
+            "testimonials",
+            "pricing",
+            "cta_banner",
+            "faq",
+            "media_gallery",
+            "text_block",
+            "split_content",
+            "stats_row",
+            "logo_cloud",
+            "timeline",
+            "interactive_demo",
+            "video_section",
+            "custom"
+          ],
+          "description": "Семантический тип секции"
+        },
+        "layout": {
+          "$ref": "#/$defs/section_layout"
+        },
+        "appearance": {
+          "$ref": "#/$defs/section_appearance"
+        },
+        "content": {
+          "$ref": "#/$defs/section_content"
+        },
+        "animation": {
+          "$ref": "#/$defs/animation"
+        },
+        "responsive": {
+          "type": "object",
+          "description": "Адаптивные переопределения",
+          "properties": {
+            "mobile_layout": {
+              "type": "string",
+              "enum": ["stack", "collapse", "hide", "simplify"],
+              "description": "Как секция адаптируется на мобильных"
+            },
+            "mobile_media": {
+              "type": "string",
+              "enum": ["keep", "replace", "hide"],
+              "description": "Что происходит с медиа на мобильных"
+            }
+          }
+        }
+      }
+    },
+
+    "section_layout": {
+      "type": "object",
+      "description": "Параметры раскладки секции",
+      "properties": {
+        "structure": {
+          "type": "string",
+          "enum": [
+            "full_width",
+            "centered",
+            "split_50_50",
+            "split_40_60",
+            "split_60_40",
+            "grid_2col",
+            "grid_3col",
+            "grid_4col",
+            "masonry",
+            "stacked"
+          ],
+          "description": "Структура расположения контента"
+        },
+        "content_alignment": {
+          "type": "string",
+          "enum": ["left", "center", "right"],
+          "default": "center"
+        },
+        "vertical_alignment": {
+          "type": "string",
+          "enum": ["top", "center", "bottom"]
+        },
+        "height": {
+          "type": "string",
+          "enum": ["auto", "viewport", "half_viewport", "fixed"],
+          "description": "Высота секции: viewport = 100vh"
+        },
+        "padding": {
+          "type": "string",
+          "enum": ["none", "small", "medium", "large", "xlarge"],
+          "description": "Внутренние отступы секции"
+        },
+        "overflow": {
+          "type": "string",
+          "enum": ["visible", "hidden", "scroll"],
+          "default": "hidden"
+        }
+      }
+    },
+
+    "section_appearance": {
+      "type": "object",
+      "description": "Визуальное оформление секции",
+      "properties": {
+        "background": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["color", "gradient", "image", "video", "transparent"]
+            },
+            "value": {
+              "type": "string",
+              "description": "CSS-значение: HEX, gradient, url() и т.д.",
+              "examples": ["#000000", "linear-gradient(180deg, #000 0%, #1a1a2e 100%)"]
+            }
+          }
+        },
+        "theme_override": {
+          "type": "string",
+          "enum": ["light", "dark"],
+          "description": "Переопределение темы для этой секции"
+        },
+        "separator": {
+          "type": "string",
+          "enum": ["none", "line", "gradient_fade", "wave", "diagonal"],
+          "description": "Визуальный разделитель от следующей секции"
+        }
+      }
+    },
+
+    "section_content": {
+      "type": "object",
+      "description": "Контент секции",
+      "properties": {
+        "eyebrow": {
+          "type": "string",
+          "description": "Мелкий текст над заголовком (label/category)",
+          "examples": ["Display", "Apple Intelligence", "Introducing"]
+        },
+        "heading": {
+          "type": "object",
+          "properties": {
+            "text": { "type": "string", "examples": ["Welcome to the family."] },
+            "level": { "type": "string", "enum": ["h1", "h2", "h3"], "default": "h2" },
+            "size": {
+              "type": "string",
+              "enum": ["small", "medium", "large", "display", "jumbo"],
+              "description": "Визуальный размер (может отличаться от уровня заголовка)"
+            },
+            "highlight": {
+              "type": "string",
+              "description": "Часть текста, выделенная цветом/градиентом",
+              "examples": ["family"]
+            }
+          }
+        },
+        "subheading": {
+          "type": "string",
+          "description": "Подзаголовок",
+          "examples": ["An amazing Mac at a surprising price."]
+        },
+        "body": {
+          "type": "string",
+          "description": "Основной текст параграфа"
+        },
+        "bullets": {
+          "type": "array",
+          "description": "Список ключевых пунктов/преимуществ",
+          "items": {
+            "type": "object",
+            "properties": {
+              "icon": { "type": "string", "description": "Иконка (название или emoji)" },
+              "title": { "type": "string" },
+              "text": { "type": "string" }
+            }
+          }
+        },
+        "media": {
+          "type": "array",
+          "description": "Медиа-элементы секции",
+          "items": {
+            "$ref": "#/$defs/media_element"
+          }
+        },
+        "cta": {
+          "type": "array",
+          "description": "Кнопки призыва к действию",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string", "examples": ["Buy", "Learn more", "Watch the film"] },
+              "style": { "type": "string", "enum": ["primary", "secondary", "text_link", "outline", "ghost"] },
+              "action": { "type": "string", "enum": ["scroll_to", "navigate", "modal", "external_link", "play_video"] },
+              "icon": { "type": "string", "description": "Иконка рядом с кнопкой (play, arrow, etc.)" }
+            }
+          }
+        },
+        "interactive": {
+          "type": "object",
+          "description": "Интерактивные элементы (выбор цвета, табы, слайдер и т.д.)",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["color_selector", "tabs", "accordion", "slider", "toggle", "carousel", "before_after", "3d_viewer"]
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": { "type": "string", "examples": ["Silver", "Blush", "Citrus", "Indigo"] },
+                  "value": { "type": "string" },
+                  "preview_media": { "type": "string", "description": "URL превью для этой опции" }
+                }
+              }
+            }
+          }
+        },
+        "badges": {
+          "type": "array",
+          "description": "Бейджи/теги (New, Pro, Popular и т.д.)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "variant": { "type": "string", "enum": ["info", "success", "warning", "highlight"] }
+            }
+          }
+        },
+        "specs": {
+          "type": "array",
+          "description": "Технические характеристики или цифры",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string", "examples": ["Battery", "Display", "Storage"] },
+              "value": { "type": "string", "examples": ["Up to 16 hrs", "13\" Liquid Retina", "256GB / 512GB"] },
+              "icon": { "type": "string" },
+              "footnote": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+
+    "media_element": {
+      "type": "object",
+      "description": "Медиа-элемент (изображение, видео, анимация)",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["image", "video", "lottie", "3d_model", "illustration", "icon_set"]
+        },
+        "role": {
+          "type": "string",
+          "enum": ["hero_image", "product_shot", "lifestyle", "diagram", "screenshot", "background", "decorative", "icon"],
+          "description": "Смысловая роль медиа"
+        },
+        "placement": {
+          "type": "string",
+          "enum": ["above_content", "below_content", "left", "right", "background", "inline", "floating"],
+          "description": "Расположение относительно текста"
+        },
+        "sizing": {
+          "type": "string",
+          "enum": ["contain", "cover", "fixed_width", "full_bleed"],
+          "description": "Как медиа масштабируется"
+        },
+        "alt_description": {
+          "type": "string",
+          "description": "Описание содержимого медиа для воспроизводства"
+        },
+        "aspect_ratio": {
+          "type": "string",
+          "examples": ["16:9", "4:3", "1:1", "21:9"]
+        }
+      }
+    },
+
+    "animation": {
+      "type": "object",
+      "description": "Анимации при появлении/взаимодействии",
+      "properties": {
+        "entrance": {
+          "type": "string",
+          "enum": ["none", "fade_in", "fade_up", "fade_down", "slide_left", "slide_right", "scale_up", "blur_in", "parallax"],
+          "description": "Анимация появления при скролле"
+        },
+        "trigger": {
+          "type": "string",
+          "enum": ["on_scroll", "on_load", "on_hover", "on_click"],
+          "default": "on_scroll"
+        },
+        "scroll_behavior": {
+          "type": "string",
+          "enum": ["none", "parallax", "sticky", "pin_and_reveal", "progress_driven"],
+          "description": "Поведение при скролле"
+        },
+        "stagger": {
+          "type": "boolean",
+          "description": "Последовательная анимация дочерних элементов",
+          "default": false
+        },
+        "duration": {
+          "type": "string",
+          "enum": ["fast", "normal", "slow"],
+          "default": "normal"
+        }
+      }
+    }
+  }
+}
